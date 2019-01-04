@@ -1,0 +1,39 @@
+{
+  "name": "spotless_storeapp",
+  "version": "1.0.0",
+  "description": "A movie rental application for rental stores",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose --runInBand",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "v10.13.0"
+  },
+  "keywords": [],
+  "author": "Mustafa Kursun",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.2",
+    "compression": "^1.7.3",
+    "config": "^3.0.0",
+    "express": "^4.16.4",
+    "express-async-errors": "^3.1.1",
+    "fawn": "^2.1.5",
+    "helmet": "^3.15.0",
+    "joi": "^14.3.1",
+    "joi-objectid": "^2.0.0",
+    "jsonwebtoken": "^8.4.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.23.0",
+    "mongoose": "^5.3.13",
+    "nodemon": "^1.18.7",
+    "pug": "^2.0.3",
+    "winston": "^3.1.0",
+    "winston-mongodb": "^3.0.2"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "supertest": "^3.3.0"
+  }
+}
