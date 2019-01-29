@@ -1,13 +1,13 @@
 /* App dependencies */
-const express = require ('express');
+const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 /* Third-party packages */
 const Fawn = require('fawn');
 /* Classes, objects, functions*/
-const {Rental, validateRental} = require('../models/rental');
-const {Movie} = require('../models/movie');
-const {Customer} = require('../models/customer');
+const { Rental, validateRental } = require('../models/rental');
+const { Movie } = require('../models/movie');
+const { Customer } = require('../models/customer');
 /* Custom middleware */
 const auth = require('../middleware/auth');
 const validate = require('../middleware/validate');
@@ -54,17 +54,17 @@ router.post('/', [auth, validate(validateRental)], async (req, res) => {
   });
 
   try {
-  // /* Fawn used to perform transaction - multiple taskas */
-  new Fawn.Task() /* collection name first */
-    .save('rentals', rental)
-    .update('movies', { _id: movie._id}, {
-      $inc: { numberInStock: -1}
-    })
-    .run();
+    // /* Fawn used to perform transaction - multiple taskas */
+    new Fawn.Task() /* collection name first */
+      .save('rentals', rental)
+      .update('movies', { _id: movie._id }, {
+        $inc: { numberInStock: -1 }
+      })
+      .run();
 
-  res.send(rental);
+    res.send(rental);
   }
-  catch(ex) {
+  catch (ex) {
     res.status(500).send('Internal server error.');
   }
 });

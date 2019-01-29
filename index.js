@@ -12,6 +12,9 @@ require('./startup/config')();
 require('./startup/validation')();
 require('./startup/prod')(app);
 
+/* Public Folder */
+app.use(express.static('public'));
+
 /* TEMPLATE ENGINE */
 app.set('view engine', 'pug');
 

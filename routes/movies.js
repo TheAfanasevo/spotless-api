@@ -2,8 +2,8 @@
 const express = require('express');
 const router = express.Router();
 /* Classes, objects, functions */
-const {Movie, validateMovie} = require('../models/movie');
-const {Genre} = require('../models/genre');
+const { Movie, validateMovie } = require('../models/movie');
+const { Genre } = require('../models/genre');
 /* Custom middleware */
 const auth = require('../middleware/auth');
 const validate = require('../middleware/validate');
@@ -11,13 +11,13 @@ const validate = require('../middleware/validate');
 /* ROUTERS */
 /* GET ROUTERS */
 router.get('/', async (req, res) => {
-  const movies = await Movie.find().sort('name');
-  res.send(movies)
+  const movies = await Movie.find().sort('name').select('-__v');
+  res.send(movies); //TODO Create a view to display all available movies.
 });
 
 router.get('/:id', async (req, res) => {
   const movie = Movie.findById(req.params.id);
-  
+
   if (!movie) return res.status(404).send('The movie with the given ID was not found.');
   res.send(movie);
 });
@@ -56,9 +56,9 @@ router.put('/:id', [auth, validate(validateMovie)], async (req, res) => {
       name: genre.name
     },
     numberInStock: req.body.numberInStock,
-    dailyRentalRate: req.body.dailyRentalRate 
-  }, {new: true});
-  
+    dailyRentalRate: req.body.dailyRentalRate
+  }, { new: true });
+
   if (!movie) return res.status(404).send('The movie with the given ID was not found.');
 
   res.send(movie);
@@ -67,7 +67,7 @@ router.put('/:id', [auth, validate(validateMovie)], async (req, res) => {
 /* DELETE ROUTERS */
 router.delete('/:id', auth, async (req, res) => {
   const movie = Movie.findByIdAndRemove(req.body.id);
-  
+
   if (!movie) return res.status(404).send('The movie with the given ID was not found.')
 
   res.send(movie);

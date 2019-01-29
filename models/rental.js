@@ -30,7 +30,7 @@ const rentalSchema = new mongoose.Schema({
   movie: {
     type: new mongoose.Schema({
       title: { /* We only take two properties */
-        type:String,
+        type: String,
         required: true,
         trim: true,
         minlength: 5,
@@ -60,8 +60,8 @@ const rentalSchema = new mongoose.Schema({
   }
 });
 
-/* Static method to find the searched customer object */
-rentalSchema.statics.lookup = function(customerId, movieId) {
+/* Static method to find the searched customer and movie object */
+rentalSchema.statics.lookup = function (customerId, movieId) {
   return this.findOne({
     /* Sub-docs */
     'customer._id': customerId,
@@ -69,8 +69,8 @@ rentalSchema.statics.lookup = function(customerId, movieId) {
   });
 };
 
-/* Method to set values of the dateReturned and rentalFee*/
-rentalSchema.methods.return = function() {
+/* Method to set values of dateReturned and rentalFee*/
+rentalSchema.methods.return = function () {
   this.dateReturned = new Date();
 
   const rentalDays = moment().diff(this.dateOut, 'days');

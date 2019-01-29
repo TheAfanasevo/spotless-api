@@ -1,0 +1,30 @@
+extends layout
+block content
+  section.hero
+    div.hero-body
+      div.columns.is-mobile.is-centered
+        div.column.is.is-three-quarters-mobile.is-two-thirds-tablet.is-half-desktop.is-one-third-widescreen.is-one-quarter-fullhd
+          h3.title.has-text-grey.has-text-centered Login
+          p.subtitle.has-text-grey.has-text-centered Please login to continue.
+          div.box
+            form(action="/api/auth" method="POST")
+              div.field
+                p.control.has-icons-left
+                  input.input(type="text" name="username" placeholder="Username")
+                  span.icon.is-small.is-left
+                    i.fas.fa-user
+              div.field
+                p.control.has-icons-left.has-icons-right
+                  input.input(type="email" name="email" placeholder="name@domain.com")
+                  span.icon.is-small.is-left
+                    i.fas.fa-envelope
+                  span.icon.is-small.is-right
+                    i.fas.fa-check
+              div.field
+                p.control.has-icons-left
+                  input.input(type="password" name="password" placeholder="*****")
+                  span.icon.is-small.is-left
+                    i.fas.fa-lock
+              div.field
+                p.control
+                  button.button.is-success(type="submit") Login

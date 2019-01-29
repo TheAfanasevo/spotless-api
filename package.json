@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose --runInBand",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "engines": {
-    "node": "v10.13.0"
+    "node": "10.13.0"
   },
   "keywords": [],
   "author": "Mustafa Kursun",
@@ -27,7 +28,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.23.0",
     "mongoose": "^5.3.13",
-    "nodemon": "^1.18.7",
+    "nodemon": "^1.18.9",
     "pug": "^2.0.3",
     "winston": "^3.1.0",
     "winston-mongodb": "^3.0.2"

@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 /* Classes, objects, functions */
-const {genreSchema} = require('./genre');
+const { genreSchema } = require('./genre');
 
 /* Movie Model & Schema */
 const Movie = mongoose.model('Movie', new mongoose.Schema({
@@ -34,10 +34,10 @@ const Movie = mongoose.model('Movie', new mongoose.Schema({
 /* Input Validation Function */
 function validateMovie(movie) {
   const schema = {
-      title: Joi.string().min(5).max(50).required(),
-      genreId: Joi.objectId().required(), /* id only */
-      numberInStock: Joi.number().min(0).required(),
-      dailyRentalRate: Joi.number().min(0).required()
+    title: Joi.string().min(5).max(50).required(),
+    genreId: Joi.objectId().required(), /* id only */
+    numberInStock: Joi.number().min(0).required(),
+    dailyRentalRate: Joi.number().min(0).required()
   };
   return Joi.validate(movie, schema);
 };

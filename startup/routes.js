@@ -10,8 +10,9 @@ const returns = require('../routes/returns');
 const error = require('../middleware/error');
 
 /* ROUTERS */
-module.exports = function(app) {
+module.exports = function (app) {
   app.use(express.json()); //parses inputs into json format
+  app.use(express.urlencoded({ extended: true }));
   app.use('/api/genres', genres);
   app.use('/api/customers', customers);
   app.use('/api/movies', movies);

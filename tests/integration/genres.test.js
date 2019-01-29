@@ -1,25 +1,25 @@
 /* Test requirements */
 const request = require('supertest');
 /* Classes, objects, functions */
-const {Genre} = require('../../models/genre');
-const {User} = require('../../models/user');
+const { Genre } = require('../../models/genre');
+const { User } = require('../../models/user');
 /* Dependencies */
 const mongoose = require('mongoose');
 
 describe('/api/genres', () => {
   let server;
 
-  beforeEach(() => {server = require('../../index')});
-  afterEach(async () => { 
+  beforeEach(() => { server = require('../../index') });
+  afterEach(async () => {
     await server.close();
     await Genre.remove({});
-    });
-  
+  });
+
   describe('GET /', () => {
     it('should return all genres', async () => {
       await Genre.collection.insertMany([
-        {name: 'genre1'},
-        {name: 'genre2'},
+        { name: 'genre1' },
+        { name: 'genre2' },
       ]);
 
       const res = await request(server).get('/api/genres');
@@ -32,13 +32,13 @@ describe('/api/genres', () => {
 
   describe('GET /:id', () => {
     it('should return a genre if valid id passed', async () => {
-      const genre = new Genre( {name: 'genre1'} );
+      const genre = new Genre({ name: 'genre1' });
       await genre.save();
 
       const res = await request(server).get('/api/genres/' + genre._id);
-/* When we create a new object, the database assign its id as an ObjectID type.
-However, when we read it again, we read the id as a string.
-SO DON'T THE OBJECT AND THE EXPECTED ONE! */
+      /* When we create a new object, the database assign its id as an ObjectID type.
+      However, when we read it again, we read the id as a string.
+      SO DON'T THE OBJECT AND THE EXPECTED ONE! */
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('name', genre.name);
     });
@@ -59,23 +59,23 @@ SO DON'T THE OBJECT AND THE EXPECTED ONE! */
     let token;
     let name;
 
-/* We set our request tester to a function to make it reusable and simplify our code */
+    /* We set our request tester to a function to make it reusable and simplify our code */
     const testRequest = () => {
       return request(server)
         .post('/api/genres/')
         .set('x-auth-token', token)
-        .send({name});
+        .send({ name });
     };
-/* To simplify our code, we create a token and a name before each test and set their values
-according to our test description */
+    /* To simplify our code, we create a token and a name before each test and set their values
+    according to our test description */
     beforeEach(() => {
       token = new User().generateAuthToken();
       name = 'genre1';
     });
-    
+
     it('should return 401 if user is not logged in', async () => {
       token = '';
-      
+
       const res = await testRequest();
 
       expect(res.status).toBe(401);
@@ -100,7 +100,7 @@ according to our test description */
     it('should save the genre if it is valid', async () => {
       await testRequest();
 
-      const genre = await Genre.find({ name: 'genre1'});
+      const genre = await Genre.find({ name: 'genre1' });
 
       expect(genre).not.toBe(null);
     });
@@ -114,10 +114,10 @@ according to our test description */
   });
 
   describe('PUT /:id', () => {
-    let token; 
-    let newName; 
-    let genre; 
-    let id; 
+    let token;
+    let newName;
+    let genre;
+    let id;
 
     const testRequest = () => {
       return request(server)
@@ -129,14 +129,14 @@ according to our test description */
     beforeEach(async () => { /* Create a genre and store in database before each test */
       genre = new Genre({ name: 'genre1' });
       await genre.save();
-      
-      token = new User().generateAuthToken();     
-      id = genre._id; 
-      newName = 'updatedName'; 
+
+      token = new User().generateAuthToken();
+      id = genre._id;
+      newName = 'updatedName';
     })
 
     it('should return 401 if client is not logged in', async () => {
-      token = ''; 
+      token = '';
 
       const res = await testRequest();
 
@@ -144,8 +144,8 @@ according to our test description */
     });
 
     it('should return 400 if genre is less than 5 characters', async () => {
-      newName = '1234'; 
-      
+      newName = '1234';
+
       const res = await testRequest();
 
       expect(res.status).toBe(400);
@@ -189,12 +189,12 @@ according to our test description */
       expect(res.body).toHaveProperty('_id');
       expect(res.body).toHaveProperty('name', newName);
     });
-  });  
+  });
 
   describe('DELETE /:id', () => {
-    let token; 
-    let genre; 
-    let id; 
+    let token;
+    let genre;
+    let id;
 
     const testRequest = async () => {
       return await request(server)
@@ -208,13 +208,13 @@ according to our test description */
       // put it in the database.      
       genre = new Genre({ name: 'genre1' });
       await genre.save();
-      
-      id = genre._id; 
-      token = new User({ isAdmin: true }).generateAuthToken();     
+
+      id = genre._id;
+      token = new User({ isAdmin: true }).generateAuthToken();
     })
 
     it('should return 401 if client is not logged in', async () => {
-      token = ''; 
+      token = '';
 
       const res = await testRequest();
 
@@ -222,7 +222,7 @@ according to our test description */
     });
 
     it('should return 403 if the user is not an admin', async () => {
-      token = new User({ isAdmin: false }).generateAuthToken(); 
+      token = new User({ isAdmin: false }).generateAuthToken();
 
       const res = await testRequest();
 
@@ -231,7 +231,7 @@ according to our test description */
 
     it('should return 404 if id is invalid', async () => {
       id = 1;
-      
+
       const res = await testRequest();
 
       expect(res.status).toBe(404);
