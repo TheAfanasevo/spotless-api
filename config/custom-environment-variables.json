@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "spotless_jwtPrivateKey"
+  "jwtPrivateKey": "spotless_jwtPrivateKey",
+  "db": "spotless_db"
 }
