@@ -23,7 +23,7 @@
   #### Testing
     * jest            23.6.0
     * supertest       3.3.0
-  #### Templating (view)
+  #### Templating (view) /disabled
     * pug             2.0.3
   #### Others
     * lodash          4.17.11
@@ -32,20 +32,22 @@
   It facilitates certain duties done in movie rental stores by helping the staff (users) manage data about their customers, movies in stock, and keep records of rented movies, make price calculation, apply special discounts for Gold customers etc.
 ## How does it do it?
   For now, it is only a back-end service which allows basic __CRUD__ *(Create, Read, Update, Delete)* functions using the following end-points:
-#### Target end-points
-    * api/            Mainpage
-    * api/auth        Authenticate users/admins
-    * api/customers   CRUD for customer data
-    * api/genres      CRUD for movie genres
-    * api/movies      CRUD for movie data
-    * api/rentals     Rented movies & Rental info
-    * api/returns     Returned movies & Price calculation
-    * api/users       Create user & Get current user
+#### Target end-points and requests
+    * api/            GET
+    * api/auth        POST user credentials, copy the token sent in response body to use in protected routes.
+    * api/customers   GET, GET/:id, POST customer details, PUT/:id + customer details to be updated, DELETE/:id to delete customer
+    * api/genres      GET all genres, GET/:id to get genres by id, POST genre name to create genre, PUT/:id to update genre name, DELETE/:id to delete genre 
+    * api/movies      GET all movies, GET/:id to get movies by id, POST movie details to create new movie, PUT/:id to update movie details, DELETE/:id to delete movie
+    * api/rentals     GET all rented movies, GET/:id to get rentals by id, POST a new rental with movie and customer details
+    * api/returns     POST a return with details of a current rental
+    * api/users       GET/me to get the current user, POST user credentials to create a new user
+    
+    *looks complicated but will be edited soon*
 #### How can I test it?
   Use [__Postman__](https://www.getpostman.com/) to test all end-points and functions.
   #### For authentication:
-  Authentication is ensured by the __JWT (Json Web Token)__. Tokens are stored in response headers after creating new users. Simply use the token stored in *'x-auth-token'* parameter of the response header to send requests to protected routes.
+  Authentication is ensured by the __JWT (Json Web Token)__. Tokens are stored in response headers and sent in response bodies after creating new users. Simply copy this token stored in *'x-auth-token'* parameter of the response header and paste it to the same header but this time in the header of your request to be sent to a protected route.
 ## What is missing?
-  There is a basic view for the API which lacks in terms of functionality. The authentication in front-end is a complex topic and thus I didn't apply it in this project.
+  The view folder has been disabled. Fully rendered version of the app will be published in/deployed to [Heroku repository](https://spotless-rental.herokuapp.com/). Thus, this version in GitHub only includes the naked API.
 ## Who are you?
-  I am just a learner. Feel free to contact me [here](mustafa.kursun@yandex.com) or on [Twitter](https://twitter.com/KursunMust) to give any kind of polite advice knowing that I am just a learner :octocat:
+  I am just a learner. Feel free to contact me [here](mustafa.kursun@yandex.com) or on [Twitter](https://twitter.com/KursunMedust) to give any kind of polite advice knowing that I am just a learner :octocat:

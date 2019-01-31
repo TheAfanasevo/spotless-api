@@ -12,7 +12,7 @@ const validate = require('../middleware/validate');
 /* GET ROUTERS */
 router.get('/', async (req, res) => {
   const movies = await Movie.find().sort('name').select('-__v');
-  res.send(movies); //TODO Create a view to display all available movies.
+  res.send(movies);
 });
 
 router.get('/:id', async (req, res) => {

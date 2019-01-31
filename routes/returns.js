@@ -28,7 +28,7 @@ router.post('/', [auth, validate(validateReturn)], async (req, res) => {
 
   return res.send(rental); /* No need to set status to 200 as express does it by default */
 
-  /* Deleted as we imported our auth middleware to check this
+  /* Disabled as we imported our auth middleware to check this
   res.status(401).send('Unauthorized'); */
 });
 
