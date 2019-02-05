@@ -50,4 +50,4 @@
 ## What is missing?
   The view folder has been disabled. Fully rendered version of the app will be published in/deployed to [Heroku repository](https://spotless-rental.herokuapp.com/). Thus, this version in GitHub only includes the naked API.
 ## Who are you?
-  I am just a learner. Feel free to contact me [here](mustafa.kursun@yandex.com) or on [Twitter](https://twitter.com/KursunMedust) to give any kind of polite advice knowing that I am just a learner :octocat:
+  I am just a learner. Feel free to contact me [here](mustafa.kursun@yandex.com) or on [Twitter](https://twitter.com/KursunMust) to give any kind of polite advice knowing that I am just a learner :octocat:
