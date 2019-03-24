@@ -1,6 +1,6 @@
 # SPOTLESS - MOVIE RENTAL APP
 ## What is Spotless?
-  *Spotless* is a RESTful API for an imaginary movie rental store. It is created based on __[Mosh Hamedani's Node.js Guide](https://www.udemy.com/nodejs-master-class/)__ with a simple interface using *Pug* view engine and *Bulma* CSS framework.
+  *Spotless* is a RESTful API for an imaginary movie rental store. It is created based on __[Mosh Hamedani's Node.js Guide](https://www.udemy.com/nodejs-master-class/)__ with a simple interface using *Pug* view engine and *Bulma* CSS framework (view is disabled until it is completed).
 ## What is it built upon?
   *Spotless* is built upon __[Node.js](https://nodejs.org/en/)__ technology, using __[Express.js](express.js) framework__ and __MongoDB database__, plus with the help of the following __NPM__ packages:
   #### Database Interaction
